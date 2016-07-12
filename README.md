@@ -10,9 +10,17 @@ Simple REST API in Play using Java Objects
 
 #Usage 
 
+
 ```shell
+export PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin:$PATH
 activator run
 ```
+
+Note the it requires Java 8, it may be necessary to do
+```shell
+export PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin:$PATH
+```
+
 #Eclipse IDE
 ```
 activator eclipse 
