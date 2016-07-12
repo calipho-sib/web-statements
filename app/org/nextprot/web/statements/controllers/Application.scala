@@ -8,12 +8,12 @@ import play.api.libs.json.Writes
 import org.nextprot.commons.statements.RawStatement
 import org.nextprot.commons.statements.StatementField
 
+import scala.collection.JavaConverters._
+
 class Application extends Controller {
 
   implicit val rawStatementWrites = new Writes[RawStatement] {
-    def writes(statement: RawStatement) = Json.obj(
-      "cv_term_name" -> statement.getValue(StatementField.ANNOT_CV_TERM_NAME)
-    )
+    def writes(statement: RawStatement) = Json.toJson(statement.asScala.toMap);
   }
   
   def listBooks = Action {
