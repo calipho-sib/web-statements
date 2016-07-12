@@ -19,5 +19,13 @@ class Application extends Controller {
   def listBooks = Action {
     Ok(Json.toJson(BedServiceStatementConverter.convert("msh2")))
   }
+/*  
+  def statementsForEntry (entryAccession :String) = Action {
+    Ok(Json.toJson(BedServiceStatementConverter.convert("msh2")))
+  }*/
+
+  def geneStatements (geneName :String) = Action {
+    Ok(Json.toJson(BedServiceStatementConverter.convert(geneName.toLowerCase())))
+  }
 
 }
