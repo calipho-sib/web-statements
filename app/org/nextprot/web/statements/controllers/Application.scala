@@ -13,7 +13,7 @@ import scala.collection.JavaConverters._
 class Application extends Controller {
 
   implicit val rawStatementWrites = new Writes[RawStatement] {
-    def writes(statement: RawStatement) = Json.toJson(statement.asScala.toMap);
+    def writes(statement: RawStatement) = Json.toJson(statement.getKeyValuesMap.asScala);
   }
   
   def listBooks = Action {
