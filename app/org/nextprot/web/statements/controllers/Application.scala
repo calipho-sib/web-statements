@@ -16,12 +16,12 @@ class Application extends Controller {
   implicit val rawStatementWrites = new Writes[RawStatement] {
     def writes(statement: RawStatement) = Json.toJson(statement.getKeyValuesMap.asScala);
   }
-/*  
+  
   def listBooks = Action {
     val json = Json.toJson(BedServiceStatementConverter.convert("msh2"));
     Ok(Json.prettyPrint(json)).as(ContentTypes.JSON)
   }
-  
+/*  
   def statementsForEntry (entryAccession :String) = Action {
     Ok(Json.toJson(BedServiceStatementConverter.convert("msh2")))
   }*/
