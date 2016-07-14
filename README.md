@@ -19,6 +19,10 @@ activator run
 
 #Package for production
 ```shell
+ssh npteam@kant
+cd /work/projects/web-statements/
+git pull
+# kill the current application (find it's PID with ps -aux)
 activator stage
 nohup target/universal/stage/bin/web-statements &
 ```
