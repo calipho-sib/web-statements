@@ -16,7 +16,7 @@ import play.api.mvc.Controller
 
 class BioEditorApplication extends Controller {
 
-  BedServiceStatementConverter.setProxyDir("/Users/dteixeira/Documents/bed/");
+  //BedServiceStatementConverter.setProxyDir("/Users/dteixeira/Documents/bed/");
 
   implicit val rawStatementWrites = new Writes[RawStatement] {
     def writes(statement: RawStatement) = Json.toJson(statement.asScala);
