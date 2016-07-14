@@ -5,8 +5,9 @@ Simple REST API in Play using Java Objects
 
 * Java 8
 * Scala version 2.11.8
-* SBT Version 0.13.11
 * Play version 2.5.4
+* Activator 1.3.10
+* SBT Version 0.13.11
 
 #Usage 
 
