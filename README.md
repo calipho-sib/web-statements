@@ -34,6 +34,12 @@ nohup target/universal/stage/bin/web-statements &
 ```
 
 
+#Troubleshooting (clear ivy cache)
+```shell
+rm -rf /work/.ivy2/cache/org.nextprot/
+rm -rf /work/.ivy2/cache/org.nextprot.parsers/
+activator compile
+```
 
 #Eclipse IDE
 ```
