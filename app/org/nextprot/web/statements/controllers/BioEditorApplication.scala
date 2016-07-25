@@ -2,7 +2,7 @@ package org.nextprot.web.statements.controllers
 
 import scala.collection.JavaConverters.mapAsScalaMapConverter
 
-import org.nextprot.commons.statements.RawStatement
+import org.nextprot.commons.statements.Statement
 import org.nextprot.commons.statements.StatementField
 import org.nextprot.parsers.bed.converter.BedServiceStatementConverter
 
@@ -18,8 +18,8 @@ class BioEditorApplication extends Controller {
 
   //BedServiceStatementConverter.setProxyDir("/Users/dteixeira/Documents/bed/");
 
-  implicit val rawStatementWrites = new Writes[RawStatement] {
-    def writes(statement: RawStatement) = Json.toJson(statement.asScala);
+  implicit val rawStatementWrites = new Writes[Statement] {
+    def writes(statement: Statement) = Json.toJson(statement.asScala);
   }
 
   def statements(report: String) = Action {
