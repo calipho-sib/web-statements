@@ -13,9 +13,15 @@ Simple REST API in Play using Java Objects
 
 
 ```shell
-export PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin:$PATH
 activator run
 ```
+Note the it requires Java 8, it may be necessary to do
+```shell
+export PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin:$PATH
+export JAVA_HOME=/share/sib/apps/linux/64/jdk1.8.0_74/
+export JAVA_PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin
+```
+
 
 #Package for production
 ```shell
@@ -28,11 +34,11 @@ nohup target/universal/stage/bin/web-statements &
 ```
 
 
-Note the it requires Java 8, it may be necessary to do
+#Troubleshooting (clear ivy cache)
 ```shell
-export PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin:$PATH
-export JAVA_HOME=/share/sib/apps/linux/64/jdk1.8.0_74/
-export JAVA_PATH=/share/sib/apps/linux/64/jdk1.8.0_74/bin
+rm -rf /work/.ivy2/cache/org.nextprot/
+rm -rf /work/.ivy2/cache/org.nextprot.parsers/
+activator compile
 ```
 
 #Eclipse IDE
