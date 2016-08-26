@@ -16,28 +16,30 @@ import play.api.mvc.Controller
 
 class BioEditorApplication extends Controller {
 
-  //BedServiceStatementConverter.setProxyDir("/Users/dteixeira/Documents/bed/");
+  //BedServiceStatementConverter.addProxyDir("/Users/dteixeira/Documents/bed/");
 
   implicit val rawStatementWrites = new Writes[Statement] {
     def writes(statement: Statement) = Json.toJson(statement.asScala);
   }
 
   def statements(report: String) = Action {
-    val statements = BedServiceStatementConverter.convertAll();
+    val result = BedServiceStatementConverter.convertAll();
+    val statements = result._1;
     if (report == null) {
       Ok(prettyPrint(toJson(statements))).as(ContentTypes.JSON)
     } else {
-      val notes = statements.filter(_.getValue(StatementField.DEBUG_NOTE) != null)
+      val notes = result._2;
       Ok(prettyPrint(toJson(notes))).as(ContentTypes.JSON);
     }
   }
 
   def geneStatements(geneName: String, report: String) = Action {
-    val statements = BedServiceStatementConverter.convert(geneName.toLowerCase());
+    val result = BedServiceStatementConverter.convert(geneName.toLowerCase());
+    val statements = result._1;
     if (report == null) {
       Ok(prettyPrint(toJson(statements))).as(ContentTypes.JSON)
     } else {
-      val notes = statements.filter(_.getValue(StatementField.DEBUG_NOTE) != null)
+      val notes = result._2;
       Ok(prettyPrint(toJson(notes))).as(ContentTypes.JSON);
     }
   }
