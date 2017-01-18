@@ -4,7 +4,7 @@ import scala.collection.JavaConverters.mapAsScalaMapConverter
 
 import org.nextprot.commons.statements.Statement
 import org.nextprot.commons.statements.StatementField
-import org.nextprot.parsers.bed.converter.BedServiceStatementConverter
+import org.nextprot.parser.bed.converter.BedStatementConverter
 
 import play.api.http.ContentTypes
 import play.api.libs.json.Json
@@ -16,14 +16,14 @@ import play.api.mvc.Controller
 
 class BioEditorApplication extends Controller {
 
-  //BedServiceStatementConverter.addProxyDir("/Users/dteixeira/Documents/bed/");
+  BedStatementConverter.addProxyDir("/Users/dteixeira/Documents/nxflat-proxy/");
 
   implicit val rawStatementWrites = new Writes[Statement] {
     def writes(statement: Statement) = Json.toJson(statement.asScala);
   }
 
-  def statements(report: String) = Action {
-    val result = BedServiceStatementConverter.convertAll();
+  def statements(database: String, release: String, report: String) = Action {
+    val result = BedStatementConverter.convertAll(database, release);
     val statements = result._1;
     if (report == null) {
       Ok(prettyPrint(toJson(statements))).as(ContentTypes.JSON)
@@ -33,8 +33,8 @@ class BioEditorApplication extends Controller {
     }
   }
 
-  def geneStatements(geneName: String, report: String) = Action {
-    val result = BedServiceStatementConverter.convert(geneName.toLowerCase());
+  def geneStatements(database: String, release: String, geneName: String, report: String) = Action {
+    val result = BedStatementConverter.convert(database, release, geneName.toLowerCase());
     val statements = result._1;
     if (report == null) {
       Ok(prettyPrint(toJson(statements))).as(ContentTypes.JSON)
