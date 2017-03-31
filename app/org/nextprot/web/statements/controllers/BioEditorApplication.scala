@@ -23,7 +23,8 @@ class BioEditorApplication extends Controller {
   }
 
   def statements(database: String, release: String, report: String) = Action {
-    val result = BedStatementConverter.convertAll(database, release);
+    val proxyDir = BedStatementConverter.getProxyDir(database, release);
+    val result = BedStatementConverter.convertAll(proxyDir);
     val statements = result._1;
     if (report == null) {
       Ok(prettyPrint(toJson(statements))).as(ContentTypes.JSON)
@@ -34,7 +35,8 @@ class BioEditorApplication extends Controller {
   }
 
   def geneStatements(database: String, release: String, geneName: String, report: String) = Action {
-    val result = BedStatementConverter.convert(database, release, geneName.toLowerCase());
+    val proxyDir = BedStatementConverter.getProxyDir(database, release);
+    val result =  BedStatementConverter.convert(proxyDir, geneName.toLowerCase());
     val statements = result._1;
     if (report == null) {
       Ok(prettyPrint(toJson(statements))).as(ContentTypes.JSON)
